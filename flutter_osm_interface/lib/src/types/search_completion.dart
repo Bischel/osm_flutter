@@ -3,6 +3,7 @@ import 'geo_point.dart';
 class Address {
   final String? postcode;
   final String? name;
+  final String? housenumber;
   final String? street;
   final String? city;
   final String? state;
@@ -10,6 +11,7 @@ class Address {
 
   Address({
     this.postcode,
+    this.housenumber,
     this.street,
     this.city,
     this.name,
@@ -20,6 +22,7 @@ class Address {
   Address.fromPhotonAPI(Map data)
       : this.postcode = data["postcode"],
         this.name = data["name"],
+        this.housenumber = data["housenumber"],
         this.street = data["street"],
         this.city = data["city"],
         this.state = data["state"],
@@ -33,6 +36,9 @@ class Address {
     }
     if (street != null && street!.isNotEmpty) {
       addr = addr + "$street,";
+    }
+    if (housenumber != null && housenumber!.isNotEmpty) {
+      addr = addr + "$housenumber,";
     }
     if (postcode != null && postcode!.isNotEmpty) {
       addr = addr + "$postcode,";
